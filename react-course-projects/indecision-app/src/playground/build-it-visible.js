@@ -13,9 +13,11 @@ const renderPage = () => {
     const page = (
         <div>
             <h1>{app.title}</h1>
+            
             <button onClick={onShowDetails}>
                 {visibility ? "Hide details" : "Show details"}
             </button>
+
             {visibility && (
                 <div>
                     <p>Hey, these are some details you can now see!</p>
