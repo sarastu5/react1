@@ -1,64 +1,92 @@
-console.log('App.js is running!');
+class IndecisionApp extends React.Component {
+    render () {
+        const title = "Indecision";
+        const subtitle = "Put your life in the hands of a computer";
+        const options = ["Thing one", "Thing two", "Thing three"];
 
-const app = {
-    title: "Indecision App",
-    subtitle: "Put your life in the hands of a computer",
-    options: []
-};
-
-const onFormSubmit = (e) => {
-    e.preventDefault(); // pysäyttää koko sivun lataamisen, kun jotain muuttuu sivulla
-
-    const option = e.target.elements.option.value; // e.target osoittaa elementtiin, joka element aloitti
-
-    if (option) { // tarkistaa, onko mitään syötetty inputiin
-        // string on aina falsy
-        app.options.push(option); // laitetaan arvo tauluun (option)
-        e.target.elements.option.value = ""; // tyhjentää inputin
-        renderTemplate();
+        return (
+            <div>
+                <Header title={title} subtitle={subtitle}/>
+                <Action />
+                <Options options={options}/>
+                <AddOption />
+            </div>
+        );
     }
-};
-
-const onRemoveAll = () => {
-    app.options = [];
-    renderTemplate();
 }
 
-const appRoot = document.getElementById('app');
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subtitle}</h2>
+            </div>
+        );
+    }
+}
 
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * app.options.length);
-    const option = app.options[randomNum];
-    alert(option);
-};
+class Action extends React.Component {
+    handlePick() {
+        alert("handlePIck");
+    }
 
-const renderTemplate = () => {
-    const template = (
-        <div>
-            <h1>{app.title}</h1>
-            {(app.title) && <p>{app.subtitle}</p>}
-    
-            <p>{app.options.length > 0 ? "Here are your options:" : "No Options"}</p>
-            
-            <button disabled={app.options.length == 0} onClick={onMakeDecision}>What should I do?</button>
+    render() {
+        return (
+            <div>
+                <button onClick={this.handlePick}>What should I do?</button>
+            </div>
+        );
+    }
+}
 
-            <button onClick={onRemoveAll}>Remove All</button>
+class Options extends React.Component {
+    handleRemoveAll() {
+        alert("Hälytys!");
+    }
 
-            <ol>
-                {
-                   app.options.map((option) => {
-                       return <li key={option}>{option}</li>
-                   })
-                }
-            </ol>
+    render() {
+        return (
+            <div>
+                <button onClick={this.handleRemoveAll}>Remove All</button> 
 
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name="option"/>
-                <button>Add option</button>
-            </form>
-        </div>
-    );
-    ReactDOM.render(template, appRoot);
-};
+                {this.props.options.map((option) => <Option key={option} optionText={option} />)}
+            </div>
+        );
+    }
+}
 
-renderTemplate();
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                {this.props.optionText}
+            </div>
+        );
+    }
+}
+
+class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+
+        const option = e.target.elements.option.value.trim(); //tallentaa syötetyn arvon optioniin, trimmaa tyhjät pois
+
+        if (option) { //jos jotain syötetty, tulee hälytys
+            alert("Hälytys!");
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleAddOption}>
+                    <input type="text" name="option"/>
+                    <button>Add option</button>
+                </form>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
