@@ -41,8 +41,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
-    handleRemoveAll() {
-        alert("Hälytys!");
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+
+    handleRemoveAll() { //metodi
+        console.log(this.props.options);
     }
 
     render() {
