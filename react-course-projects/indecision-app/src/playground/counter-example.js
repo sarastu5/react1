@@ -6,7 +6,7 @@ class Counter extends React.Component {
         this.handleMinusOne = this.handleMinusOne.bind(this);
         this.handleReset = this.handleReset.bind(this);
         this.state = {
-            count: 0
+            count: props.count //tulee Counter.defaultPropseista
         };
     } 
     
@@ -45,6 +45,11 @@ class Counter extends React.Component {
         );
     }
 }
+
+
+Counter.defaultProps = { //oletuksena on nyt 0
+    count: 0
+};
 
 ReactDOM.render(<Counter />, document.getElementById('app'))
 
