@@ -1,12 +1,11 @@
 console.log('utils.js is running');
 
-const square = (x) => x * x;
+export const square = (x) => x * x;
 
-const add = (a, b) => a + b;
+export const add = (a, b) => a + b;
 
-export {square, add};
+//export const subtrackt (a, b) => a - b;
 
-const isAdult = 18;
-const canDrink = 18;
+// export {square, add, subtract as default};
 
-export {isAdult, canDrink};
+// export defaultia ei voi käyttää muuttujien kanssa
