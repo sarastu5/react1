@@ -4,33 +4,41 @@ import AddOption from './AddOption.js';
 import Header from './Header.js';
 import Action from './Action.js';
 import Options from './Options.js';
+import OptionModal from './OptionModal';
 
 //ei ole oikeutta lifecycle metodeihin
 export default class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   };
 
   // eventhandlerit ensin
 
   // muutetaan eventhandlerit arrow funktioiksi
   handleDeleteOptions = () => {
+      console.log("handleDeteleOptions");
       this.setState(() => ({options: []}));
   };
 
   handleDeleteOption = (optionToRemove) => {
+      console.log("handleDeteleOption");
       this.setState((prevState) => ({
          options: prevState.options.filter((option) => optionToRemove !== option)
       }));
   };
 
   handlePick = () => {
+    console.log("handlePick");
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
-    alert(option);
+    this.setState(() => ({
+      selectedOption: option
+    }));
   };
 
   handleAddOption = (option) => {
+    console.log("handleAddOption");
     if (!option) {
       return 'Enter valid value to add item';
     } else if (this.state.options.indexOf(option) > -1) {
@@ -39,6 +47,13 @@ export default class IndecisionApp extends React.Component {
 
     this.setState((prevState) => ({
         options: prevState.options.concat(option)
+    }));
+  };
+
+  handleClearSelectedOption = () => {
+    console.log("handleClearSelectedOption");
+    this.setState(() => ({
+      selectedOption: undefined
     }));
   };
 
@@ -86,6 +101,10 @@ export default class IndecisionApp extends React.Component {
         />
         <AddOption
           handleAddOption={this.handleAddOption}
+        />
+        <OptionModal 
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
         />
       </div>
     );
