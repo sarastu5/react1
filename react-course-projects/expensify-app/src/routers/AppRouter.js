@@ -15,7 +15,7 @@ const AppRouter = () => (
             <Switch> {/*käy läpi kaikki sivut ja jos ei löydä, tulostaa sivulle 404*/}
                 <Route path="/" component={ExpenseDashboardPage} exact={true}/>
                 <Route path="/create" component={AddExpensePage}/>
-                <Route path="/edit" component={EditExpensePage}/>
+                <Route path="/edit/:id" component={EditExpensePage}/>
                 <Route path="/help" component={HelpPage}/>
                 <Route component={NotFoundPage}/>
             </Switch>
