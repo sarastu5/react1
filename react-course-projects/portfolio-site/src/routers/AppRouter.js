@@ -4,7 +4,7 @@ import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import HomePage from '../components/HomePage';
 import ContactPage from '../components/ContactPage';
-import PortfolioItemPage from '../components/PortfolioPage';
+import PortfolioItemPage from '../components/PortfolioItemPage';
 import PortfolioPage from '../components/PortfolioPage';
 
 const AppRouter = () => (
