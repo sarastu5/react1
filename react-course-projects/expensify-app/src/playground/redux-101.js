@@ -21,8 +21,13 @@ const resetCount = () => ({
     type: 'RESET'
 });
 
-//createStore haluaa aina parametrikseen funktion
-const store = createStore((state = {count: 0}, action) => {
+//reducers
+//kertoo, MITEN tila muuttuu
+//key attributes:
+//1. pure functions
+//2. never change state or action
+
+const countReducer = (state = {count: 0}, action) => {
     switch (action.type) {
         case 'INCREMENT':
             return {
@@ -51,7 +56,9 @@ const store = createStore((state = {count: 0}, action) => {
     } else {
         return state;
     }
-});
+};
+
+const store = createStore(countReducer);
 
 //tätä kutsutaan aina, kun state muuttuu
 const unsubscribe = store.subscribe(() => {
