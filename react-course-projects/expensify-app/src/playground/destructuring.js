@@ -1,53 +1,45 @@
 //
-//Object destrutring
+// Object destructuring
 //
 
 // const person = {
-//     name: 'Sara',
-//     age: 30,
-//     location: {
-//         city: 'Helsinki',
-//         temperature: 30
-//     }
+//   name: 'Andrew',
+//   age: 27,
+//   location: {
+//     city: 'Philadelphia',
+//     temp: 88
+//   }
 // };
 
-// const {name = 'Anonymous', age} = person;
-// const name = person.name;
-// const age = person.age;
+// const { name: firstName = 'Anonymous', age } = person;
+// console.log(`${firstName} is ${age}.`);
 
-// console.log(`${name} is ${age}.`);
-
-// const {city, temperature} = person.location;
-
+// const { city, temp: temperature } = person.location;
 // if (city && temperature) {
-//     console.log(`It's ${temperature} degrees celsius in ${city}.`);
+//   console.log(`It's ${temperature} in ${city}.`);
 // }
 
 // const book = {
-//     title: 'Ego is the Enemy',
-//     author: 'Ryan Holiday',
-//     publisher: {
-//         name: 'Penguin'
-//     }
+//   title: 'Ego is the Enemy',
+//   author: 'Ryan Holiday',
+//   publisher: {
+//     // name: 'Penguin'
+//   }
 // };
 
-// const {title, author} = book;
-// const {name: publisherName = 'Self-publisched'} = book.publisher;
+// const { name: publisherName = 'Self-Published' } = book.publisher;
 
-// console.log(publisherName);
+// console.log(publisherName); // Penguin, Self-Published
 
 //
-//Array destructuring
+// Array destructuring
 //
 
-// const address = ['Mannerheimintie 12', 'Helsinki', 'Suomi', '00100'];
+// const address = ['1299 S Juniper Street', 'Philadelphia', 'Pennsylvania', '19147'];
+// const [, city, state = 'New York'] = address;
+// console.log(`You are in ${city} ${state}.`);
 
-// const [street, city, country, zip] = address;
-
-// console.log(`You are in ${city} ${country}.`);
-
-const item = ['Coffee (hot)', '2 euros', '2,5 euros', '3 euros'];
-
+const item = ['Coffee (iced)', '$3.00', '$3.50', '$3.75'];
 const [itemName, , mediumPrice] = item;
 
 console.log(`A medium ${itemName} costs ${mediumPrice}`);
